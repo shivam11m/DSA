@@ -20,7 +20,7 @@ class minheap{
         int right(int i){ return 2*i + 2 ;}
         int parent(int i){ return (i-1)/2 ;}
        void insertKey(int x){
-           cout<<capacity<<size<<" "<<endl;
+           //cout<<capacity<<size<<" "<<endl;
             if(size==capacity){
                 return;
             }
