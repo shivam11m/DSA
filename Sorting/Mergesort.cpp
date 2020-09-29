@@ -23,9 +23,11 @@ void merge(int a[],int l,int m,int r){
         right[j]=a[m+j+1];
     }
     int i=0,j=0,k=l;
-    while(i<n1 && j<n2){
+    // i<n1 to avoid index problem
+    while(i<n1 && j<n2){ 
         if(left[i]<=right[j]){
             a[k]=left[i];
+            
             k++;
             i++;
         }
