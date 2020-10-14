@@ -2,13 +2,17 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+/*
+6
+12 2 4 5 14 45
+*/
 class minheap{
     private:
         int *arr;
-        int size;
         int capacity;
 
     public:
+        int size;
         minheap(int c)
         {
             size=0;
@@ -20,7 +24,6 @@ class minheap{
         int right(int i){ return 2*i + 2 ;}
         int parent(int i){ return (i-1)/2 ;}
        void insertKey(int x){
-           //cout<<capacity<<size<<" "<<endl;
             if(size==capacity){
                 return;
             }
@@ -39,20 +42,35 @@ class minheap{
             }
             cout<<endl;
         }
-        
-    
+        void minheapify(int i);
 };
-
+void minheap :: minheapify(int i){
+    int lt=left(i);
+    int rt=right(i);
+    int smallest=i;
+    if(arr[lt]<arr[i] && lt<size){
+        smallest=lt;
+    }
+    if(arr[rt]<arr[smallest] && rt<size){
+        smallest=rt;
+    }
+    if(smallest!=i){ // checks if smallest is changed to lt , rt or not
+        swap(arr[i],arr[smallest]);
+        minheapify(smallest);
+    }
+}
 int main()
 {
     minheap h(100);
-    h.insertKey(12); 
-    h.insertKey(2); 
-    h.insertKey(4); 
-    h.insertKey(5); 
-    h.insertKey(14); 
-    h.insertKey(45); 
-    
+    int n;
+    cin>>n;
+    int r;
+    for(int i=0;i<n;i++){
+        cin>>r;
+        h.insertKey(r);
+    }
+    h.show();
+    h.insertKey(7);
     h.show();
    return 0;
 }
