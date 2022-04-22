@@ -53,16 +53,58 @@ void inorder(node *root)
     }
 }
 
+int floorbst(node *root, int x)
+{
+    node *res= NULL;
+    while(root!=NULL){
+        if(root->val==x){
+            return root->val;
+        }
+        else if(root->val>x){
+            root = root->left;
+        }
+        else{
+            res= root;
+            root=root->right;
+        }
+    }
+    return res->val;
+}
+
+int ceilbst(node *root, int x)
+{
+    node *res =NULL;
+    
+    while(root!=NULL)
+    {
+        if(root->val==x){
+            return root->val;
+        }
+        else if(root->val<x){
+            root=root->right;
+        }
+        else{
+            res = root;
+            root=root->left;
+        }
+    }
+    return res->val;
+}
+
+
 int main()
 {
     node *root = new node(10);
-     insert(root, 20);
-     insert(root, 30);
-     insert(root, 5);
-     insert(root, 9);
+    insert(root, 5);
+    insert(root, 10);
+    insert(root, 15);
+    insert(root, 12);
+    insert(root, 30);
     
     inorder(root);
-    
+    cout<<endl;
+    cout<<"floor of bst is: "<<floorbst(root, 14)<<endl;
+    cout<<"ceil of bst is: "<<ceilbst(root, 14)<<endl;
 
-   return 0;
+    return 0;
 }
